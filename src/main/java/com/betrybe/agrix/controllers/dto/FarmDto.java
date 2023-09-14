@@ -13,6 +13,6 @@ public record FarmDto(Long id, String name, Double size) {
    * @return the farm
    */
   public Farm toFarm() {
-    return new Farm(id, name, size);
+    return new Farm(id, name, size, null);
   }
 }
