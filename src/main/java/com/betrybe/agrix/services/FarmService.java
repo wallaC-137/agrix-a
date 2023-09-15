@@ -1,5 +1,6 @@
 package com.betrybe.agrix.services;
 
+import com.betrybe.agrix.exception.CropNotFoundException;
 import com.betrybe.agrix.exception.FarmNotFoundException;
 import com.betrybe.agrix.models.entities.Crop;
 import com.betrybe.agrix.models.entities.Farm;
@@ -96,10 +97,5 @@ public class FarmService {
     }
 
     return crops;
-  }
-
-  public List<Crop> getAllCrop() {
-
-    return cropRepository.findAll();
   }
 }
