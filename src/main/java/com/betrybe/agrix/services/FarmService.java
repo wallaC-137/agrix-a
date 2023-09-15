@@ -80,4 +80,21 @@ public class FarmService {
 
     return cropRepository.save(crop);
   }
+
+  /**
+   * Gets all crop.
+   *
+   * @param id the id
+   * @return the all crop
+   */
+  public List<Crop> getAllCrop(Long id) {
+    Optional<Farm> farm = farmRepository.findById(id);
+    List<Crop> crops = cropRepository.findAll();
+
+    if (farm.isEmpty()) {
+      throw new FarmNotFoundException();
+    }
+
+    return crops;
+  }
 }

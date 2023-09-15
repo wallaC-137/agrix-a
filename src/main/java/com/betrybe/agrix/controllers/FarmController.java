@@ -76,7 +76,6 @@ public class FarmController {
     return ResponseEntity.ok(optionalFarm);
   }
 
-
   /**
    * Create crop response entity.
    *
@@ -91,5 +90,23 @@ public class FarmController {
     CropDto cropDto2 = new CropDto(newFarm.getId(), newFarm.getName(), newFarm.getPlantedArea(),
         newFarm.getFarmId().getId());
     return ResponseEntity.status(HttpStatus.CREATED).body(cropDto2);
+  }
+
+  /**
+   * Gets all crop.
+   *
+   * @param id the id
+   * @return the all crop
+   */
+  @GetMapping("/{id}/crops")
+  public ResponseEntity<List<CropDto>> getAllCrop(@PathVariable Long id) {
+    List<Crop> crops = farmService.getAllCrop(id);
+
+    List<CropDto> cropDtos = crops.stream()
+        .filter((cropF) -> cropF.getFarmId().getId().equals(id))
+        .map((crop) -> new CropDto(crop.getId(), crop.getName(), crop.getPlantedArea(), id))
+        .collect(Collectors.toList());
+
+    return ResponseEntity.ok(cropDtos);
   }
 }
