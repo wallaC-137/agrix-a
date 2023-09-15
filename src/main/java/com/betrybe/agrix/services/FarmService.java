@@ -97,4 +97,9 @@ public class FarmService {
 
     return crops;
   }
+
+  public List<Crop> getAllCrop() {
+
+    return cropRepository.findAll();
+  }
 }
